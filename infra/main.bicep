@@ -28,7 +28,7 @@ param hostingPlanName string = 'hosting-plan-${resourceToken}'
   'P3'
   'P4'
 ])
-param hostingPlanSku string = 'B3'
+param hostingPlanSku string = 'B1'
 
 @description('The sku tier for the App Service plan')
 @allowed([
@@ -131,7 +131,7 @@ param azureOpenAIModel string = 'gpt-4o'
 param azureOpenAIModelName string = 'gpt-4o'
 
 @description('Azure OpenAI Model Version')
-param azureOpenAIModelVersion string = '2024-05-13'
+param azureOpenAIModelVersion string = '2024-11-20'
 
 @description('Azure OpenAI Model Capacity - See here for more info  https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/quota')
 param azureOpenAIModelCapacity int = 30
@@ -244,7 +244,7 @@ param azureAISearchName string = 'search-${resourceToken}'
   'standard2'
   'standard3'
 ])
-param azureSearchSku string = 'standard'
+param azureSearchSku string = 'free'
 
 @description('Azure AI Search Index')
 param azureSearchIndex string = 'index-${resourceToken}'
@@ -315,7 +315,7 @@ var queueName = 'doc-processing'
 var clientKey = '${uniqueString(guid(subscription().id, deployment().name))}${newGuidString}'
 var eventGridSystemTopicName = 'doc-processing'
 var tags = { 'azd-env-name': environmentName }
-var rgName = 'rg-${environmentName}'
+var rgName = 'RG-${environmentName}'
 var keyVaultName = 'kv-${resourceToken}'
 var baseUrl = 'https://raw.githubusercontent.com/Azure-Samples/chat-with-your-data-solution-accelerator/main/'
 
@@ -1279,6 +1279,17 @@ module storage 'core/storage/storage-account.bicep' = {
 }
 
 // USER ROLES
+// Owner
+module ownerRoleUser 'core/security/role.bicep' = if (authType == 'rbac' && principalId != '') {
+  scope: rg
+  name: 'owner-role-user'
+  params: {
+    principalId: principalId
+    roleDefinitionId: '8e3af657-a8ff-443c-a75c-2fe8c4bcb635'
+    principalType: 'User'
+  }
+}
+
 // Storage Blob Data Contributor
 module storageRoleUser 'core/security/role.bicep' = if (authType == 'rbac' && principalId != '') {
   scope: rg

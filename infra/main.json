@@ -36,7 +36,7 @@
     },
     "hostingPlanSku": {
       "type": "string",
-      "defaultValue": "B3",
+      "defaultValue": "B1",
       "allowedValues": [
         "F1",
         "D1",
@@ -273,7 +273,7 @@
     },
     "azureOpenAIModelVersion": {
       "type": "string",
-      "defaultValue": "2024-05-13",
+      "defaultValue": "2024-11-20",
       "metadata": {
         "description": "Azure OpenAI Model Version"
       }
@@ -486,7 +486,7 @@
     },
     "azureSearchSku": {
       "type": "string",
-      "defaultValue": "standard",
+      "defaultValue": "free",
       "allowedValues": [
         "free",
         "basic",
@@ -642,7 +642,7 @@
     "tags": {
       "azd-env-name": "[parameters('environmentName')]"
     },
-    "rgName": "[format('rg-{0}', parameters('environmentName'))]",
+    "rgName": "[format('RG-{0}', parameters('environmentName'))]",
     "keyVaultName": "[format('kv-{0}', parameters('resourceToken'))]",
     "baseUrl": "https://raw.githubusercontent.com/Azure-Samples/chat-with-your-data-solution-accelerator/main/",
     "appversion": "latest",
@@ -959,7 +959,7 @@
             "value": "[parameters('azurePostgresDBAccountName')]"
           },
           "solutionLocation": {
-            "value": "eastus2"
+            "value": "[parameters('location')]"
           },
           "managedIdentityObjectId": {
             "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, variables('rgName')), 'Microsoft.Resources/deployments', 'deploy_managed_identity'), '2022-09-01').outputs.managedIdentityOutput.value.objectId]"
