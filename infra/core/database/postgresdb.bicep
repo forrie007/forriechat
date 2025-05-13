@@ -3,7 +3,7 @@ param solutionLocation string
 param managedIdentityObjectId string
 param managedIdentityObjectName string
 @description('The name of the SQL logical server.')
-param serverName string = '${solutionName}-postgres'
+param serverName string = '${solutionName}'
 
 param administratorLogin string = 'admintest'
 @secure()
