@@ -293,7 +293,7 @@ param useKeyVault bool = authType == 'rbac' ? false : true
 param principalId string = ''
 
 @description('Hosting model for the web apps. This value is fixed as "container", which uses prebuilt containers for faster deployment.')
-param hostingModel string = 'container'
+param hostingModel string = 'code'
 
 @allowed([
   'CRITICAL'
