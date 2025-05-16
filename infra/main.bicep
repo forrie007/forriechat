@@ -28,7 +28,7 @@ param hostingPlanName string = 'hosting-plan-${resourceToken}'
   'P3'
   'P4'
 ])
-param hostingPlanSku string = 'B1'
+param hostingPlanSku string = 'B3'
 
 @description('The sku tier for the App Service plan')
 @allowed([
@@ -293,7 +293,7 @@ param useKeyVault bool = authType == 'rbac' ? false : true
 param principalId string = ''
 
 @description('Hosting model for the web apps. This value is fixed as "container", which uses prebuilt containers for faster deployment.')
-param hostingModel string = 'code'
+param hostingModel string = 'container'
 
 @allowed([
   'CRITICAL'

@@ -10,7 +10,7 @@ param useKeyVault = bool(readEnvironmentVariable('USE_KEY_VAULT', 'false'))
 param authType = readEnvironmentVariable('AZURE_AUTH_TYPE', 'rbac')
 
 // Deploying using json will set this to "container".
-param hostingModel = readEnvironmentVariable('AZURE_APP_SERVICE_HOSTING_MODEL', 'code')
+param hostingModel = readEnvironmentVariable('AZURE_APP_SERVICE_HOSTING_MODEL', 'container')
 
 // Feature flags
 param azureSearchUseIntegratedVectorization = bool(readEnvironmentVariable('AZURE_SEARCH_USE_INTEGRATED_VECTORIZATION', 'false'))
