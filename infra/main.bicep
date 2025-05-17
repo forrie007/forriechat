@@ -703,7 +703,7 @@ module web_docker './app/web.bicep' = if (hostingModel == 'container') {
   params: {
     name: '${websiteName}-docker'
     location: location
-    tags: union(tags, { 'azd-service-name': 'web-docker' })
+    tags: union(tags, { 'azd-service-name': 'web' })
     dockerFullImageName: '${registryName}.azurecr.io/rag-webapp:${appversion}'
     appServicePlanId: hostingplan.outputs.name
     applicationInsightsName: monitoring.outputs.applicationInsightsName
@@ -802,7 +802,7 @@ module web_docker './app/web.bicep' = if (hostingModel == 'container') {
             ? {
                 AZURE_POSTGRESQL_HOST_NAME: postgresDBModule.outputs.postgresDbOutput.postgreSQLServerName
                 AZURE_POSTGRESQL_DATABASE_NAME: postgresDBModule.outputs.postgresDbOutput.postgreSQLDatabaseName
-                AZURE_POSTGRESQL_USER: '${websiteName}-docker'
+                AZURE_POSTGRESQL_USER: '${websiteName}'
               }
             : {}
     )
@@ -913,7 +913,7 @@ module adminweb_docker './app/adminweb.bicep' = if (hostingModel == 'container')
   params: {
     name: '${adminWebsiteName}-docker'
     location: location
-    tags: union(tags, { 'azd-service-name': 'adminweb-docker' })
+    tags: union(tags, { 'azd-service-name': 'adminweb' })
     dockerFullImageName: '${registryName}.azurecr.io/rag-adminwebapp:${appversion}'
     appServicePlanId: hostingplan.outputs.name
     applicationInsightsName: monitoring.outputs.applicationInsightsName
@@ -997,7 +997,7 @@ module adminweb_docker './app/adminweb.bicep' = if (hostingModel == 'container')
             ? {
                 AZURE_POSTGRESQL_HOST_NAME: postgresDBModule.outputs.postgresDbOutput.postgreSQLServerName
                 AZURE_POSTGRESQL_DATABASE_NAME: postgresDBModule.outputs.postgresDbOutput.postgreSQLDatabaseName
-                AZURE_POSTGRESQL_USER: '${adminWebsiteName}-docker'
+                AZURE_POSTGRESQL_USER: '${adminWebsiteName}'
               }
             : {}
     )
@@ -1128,7 +1128,7 @@ module function_docker './app/function.bicep' = if (hostingModel == 'container')
   params: {
     name: '${functionName}-docker'
     location: location
-    tags: union(tags, { 'azd-service-name': 'function-docker' })
+    tags: union(tags, { 'azd-service-name': 'function' })
     dockerFullImageName: '${registryName}.azurecr.io/rag-backend:${appversion}'
     appServicePlanId: hostingplan.outputs.name
     applicationInsightsName: monitoring.outputs.applicationInsightsName
@@ -1198,7 +1198,7 @@ module function_docker './app/function.bicep' = if (hostingModel == 'container')
             ? {
                 AZURE_POSTGRESQL_HOST_NAME: postgresDBModule.outputs.postgresDbOutput.postgreSQLServerName
                 AZURE_POSTGRESQL_DATABASE_NAME: postgresDBModule.outputs.postgresDbOutput.postgreSQLDatabaseName
-                AZURE_POSTGRESQL_USER: '${functionName}-docker'
+                AZURE_POSTGRESQL_USER: '${functionName}'
               }
             : {}
     )
