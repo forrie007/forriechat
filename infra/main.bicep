@@ -802,7 +802,7 @@ module web_docker './app/web.bicep' = if (hostingModel == 'container') {
             ? {
                 AZURE_POSTGRESQL_HOST_NAME: postgresDBModule.outputs.postgresDbOutput.postgreSQLServerName
                 AZURE_POSTGRESQL_DATABASE_NAME: postgresDBModule.outputs.postgresDbOutput.postgreSQLDatabaseName
-                AZURE_POSTGRESQL_USER: '${websiteName}'
+                AZURE_POSTGRESQL_USER: '${websiteName}-docker'
               }
             : {}
     )
@@ -997,7 +997,7 @@ module adminweb_docker './app/adminweb.bicep' = if (hostingModel == 'container')
             ? {
                 AZURE_POSTGRESQL_HOST_NAME: postgresDBModule.outputs.postgresDbOutput.postgreSQLServerName
                 AZURE_POSTGRESQL_DATABASE_NAME: postgresDBModule.outputs.postgresDbOutput.postgreSQLDatabaseName
-                AZURE_POSTGRESQL_USER: '${adminWebsiteName}'
+                AZURE_POSTGRESQL_USER: '${adminWebsiteName}-docker'
               }
             : {}
     )
@@ -1198,7 +1198,7 @@ module function_docker './app/function.bicep' = if (hostingModel == 'container')
             ? {
                 AZURE_POSTGRESQL_HOST_NAME: postgresDBModule.outputs.postgresDbOutput.postgreSQLServerName
                 AZURE_POSTGRESQL_DATABASE_NAME: postgresDBModule.outputs.postgresDbOutput.postgreSQLDatabaseName
-                AZURE_POSTGRESQL_USER: '${functionName}'
+                AZURE_POSTGRESQL_USER: '${functionName}-docker'
               }
             : {}
     )
